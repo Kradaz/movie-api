@@ -16,7 +16,8 @@ app.use(bodyParser.json());
 app.use(methodOverride());
 
 app.use((err, req, res, next) => {
-  // logic
+  console.error(err.stack);
+  res.status(500).send('Something broke!');
 });
 
 
@@ -75,6 +76,8 @@ app.get('/documentation', (req, res) => {
 app.get('/movies', (req, res) => {
   res.json(topMovies);
 });
+
+app.use(express.static('public'));
 
 
 // listen for requests
