@@ -3,9 +3,212 @@
   <head>
   <meta charset="utf-8">
     <title>DOCUMENTATION</title>
+    <style>
+  table, th, td {
+    border: 1px solid #e040fb;
+    border-collapse: collapse;
+    font-size: 14px;
+    padding: 5px;
+    margin: 20px;
+  }
+  body {
+    margin: 25px;
+    background-color: #424242;
+    color: #1DE9B6;
+  }
+  footer, h1 {
+    text-align: center;
+  }
+  a, h1, h2, footer, span {
+    color: #e040fb;
+  }
+  h1 {
+    margin-top: 40px;
+  }
+</style>
   </head>
   <body>
-    <h1>Documentation Page</h1>
-    <p> This is the documentation page</p>
+    <h1>myFlix 🎬</h1>
+    <h2>Overview</h2>
+    <p>
+      MyFlix is a REST API which stores a collection of top tier movies of all time into a database. It provides information about the movie such as: genre,
+      author, and a small explanation of the movie. There are different types of movies from action to drama. The API uses quite a few CRUD operations to change
+      data through HTTP and APi endpoints. It also allows users to register, delete or modify the data stored within an user account.
+    </p>
+    <br>
+    <h2>Table of API endpoints</h2>
+    <p>
+      This table lists all the available endpoints and for each endpoint provides the following information: the URL, a description
+      of the operation fulfilled by the request, the HTTP method used in the request, the operation type, whether a request body is required and an
+      example of the format used; the format of responses received, and an example response. Request parameters included within the URLs are indicated
+      using square brackets.
+    </p>
+    <br>
+    <table>
+      <tr>
+        <th>URL</th>
+        <th>Description</th>
+        <th>Method</th>
+        <th>Operation</th>
+        <th>Request body</th>
+        <th>Response format</th>
+        <th>Example response</th>
+      </tr>
+      <tr>
+        <td>/</td>
+        <td>Returns a welcome message</td>
+        <td>GET</td>
+        <td>Read</td>
+        <td>None</td>
+        <td>Text</td>
+        <td>Welcome to myFlix!</td>
+      </tr>
+      <tr>
+        <td>/users</td>
+        <td>Registers a new user</td>
+        <td>POST</td>
+        <td>Create</td>
+        <td>A JSON object containing the following fields:<br><br>
+          {<br>
+            "name":"John",<br>
+            "favoriteMovies": "Joker",<br>
+          }
+        </td>
+        <td>A JSON object containing the registered user</td>
+        <td>
+          {<br>
+            "name": "John",<br>
+            "id": "410b91bd-83c6-4704-91ef-cb0012f07d5e",<br>
+            "favoriteMovies": "Joker",<br>
+          }
+        </td>
+      </tr>
+      <tr>
+        <td>/users/[Username]</td>
+        <td>Updates the user record for a named user</td>
+        <td>PUT</td>
+        <td>Update</td>
+        <td>A JSON object containing the following fields:<br><br>
+          {<br>
+            "name":"Alex",<br>
+            "favoriteMovies":[],<br>
+          }
+        </td>
+        <td>A JSON object with the updated user details </td>
+        <td>
+          {<br>
+            "id": 1,<br>
+            "name": "Alex Updated",<br>
+            "favoriteMovies": [],<br>
+          }
+        </td>
+      </tr>
+      <tr>
+        <td>/users/[Username]</td>
+        <td>Deletes the user record for a named user</td>
+        <td>DELETE</td>
+        <td>Delete</td>
+        <td>None</td>
+        <td>Text</td>
+        <td>[Username] account has been deleted</td>
+      </tr>
+      <tr>
+        <td>/users/[Username]/[MovieID]</td>
+        <td>Adds a movie ID into the user's favorie movies' list</td>
+        <td>PUT</td>
+        <td>Update</td>
+        <td>None</td>
+        <td>An array of the user's updated favourite movies. For this endpoint, the reponse returned a message that confirmes the movies has been added into the user's list</td>
+        <td>
+          [<br>"Joker has been added to user 1's array"
+          ]
+        </td>
+      </tr>
+      <tr>
+        <td>/users/[Username]/[MovieID]</td>
+        <td>Removes a movie ID from the named user's array of favourite movies</td>
+        <td>DELETE</td>
+        <td>Delete</td>
+        <td>None</td>
+        <td>An array of the user's updated favourite movies. For this endpoint, the reponse returned a message that confirmes the movies has been deleted from the user's list</td>
+        <td>
+          [<br>"Joker has been removed from user 1's array"
+          ]
+        </td>
+      </tr>
+      <tr>
+        <td>/topMovies</td>
+        <td>Returns the records for all the movies in the movies collection in the database</td>
+        <td>GET</td>
+        <td>Read</td>
+        <td>None</td>
+        <td>An array of movie records</td>
+        <td>
+          [<br>
+          {<br>
+            "Title":"A movie",<br>
+            "Description":"brief of the movie.",<br>
+            "Genre":{"Name":"Drama","Description":"This text describes the type of genre."},<br>
+            "Author":{"Name":"A Director."}
+          },<br>
+          {<br>
+            "Title":"A movie",<br>
+            "Description":"brief of the movie.",<br>
+            "Genre":{"Name":"Drama","Description":"This text describes the type of genre."},<br>
+            "Author":{"Name":"A Director."}
+          },<br>
+          ]
+        </td>
+      </tr>
+      <tr>
+        <td>/movies/[Title]</td>
+        <td>Returns the movie record for a movie specified by title</td>
+        <td>GET</td>
+        <td>Read</td>
+        <td>None</td>
+        <td>A JSON object containing the record for the movie requested</td>
+        <td>
+          {<br>
+            "Title":"A movie",<br>
+            "Description":"brief of the movie.",<br>
+            "Genre":{"Name":"Drama","Description":"This text describes the type of genre."},<br>
+            "Author":{"Name":"A Director."}
+          },<br>
+        </td>
+      </tr>
+      <tr>
+        <td>/movies/genre/[Name]</td>
+        <td>Returns the description of a movie genre searched for by name</td>
+        <td>GET</td>
+        <td>Read</td>
+        <td>None</td>
+        <td>Text</td>
+        <td>
+          {<br>
+            "Name": "Drama",<br>
+            "Description":"brief of the genre.",<br>
+          },<br>
+        </td>
+      </tr>
+      <tr>
+        <td>/movies/director/[Name]</td>
+        <td>Returns the data about a director searched for by name</td>
+        <td>GET</td>
+        <td>Read</td>
+        <td>None</td>
+        <td>A JSON object with details of the director requested</td>
+        <td>
+          "Title":"A movie",<br>
+          "Description":"brief of the movie.",<br>
+          "Genre":{"Name":"Drama","Description":"This text describes the type of genre."},<br>
+          "Author":{"Name":"A Director."}
+        </td>
+      </tr>
+    </table>
+    <br>
+    <h2>Further information</h2>
+    <p>For further information about this API, please visit the project repository on github:
+      <a href="https://github.com/Kradaz/movie-api.git" target="_blank"> Adarsh Saulick</a>
+    </p>
   </body>
 </html>
