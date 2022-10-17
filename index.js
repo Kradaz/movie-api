@@ -13,6 +13,10 @@ const express = require('express'),
 
   app.use(bodyParser.json());
 
+let auth = require('./auth')(app);
+const passport = require('passport');
+require('./passport');
+
 let users = [
   {
     id: 1,
@@ -152,12 +156,13 @@ app.get('/', (req, res) => {
 
 // return JSON object when at /movies / Get all movies
 
-app.get('/movies', (req, res) => {
+app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) => {
   Movies.find()
   .then((movies) => {
     res.status(201).json(movies);
   })
-  .catch((err) => {
+  .catch((error) => {
+    console.error(error);
     res.status(500).send('Error: ' + err);
   });
 });
