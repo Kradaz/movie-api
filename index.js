@@ -185,6 +185,11 @@ app.get('/', (req, res) => {
   res.send('Welcome to MyFlix!');
 });
 
+// get documentation page
+app.get('/documentation', (req, res) => {
+  res.sendFile('public/documentation.html', { root: __dirname });
+});
+
 // return JSON object when at /movies / Get all movies
 
 app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) => {
