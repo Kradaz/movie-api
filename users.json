@@ -1,7 +1,0 @@
-{"_id":{"$oid":"6321f8f76be98e81ef3ef86d"},"Username":"Gabriel Martin","Password":"3421","Email":"gabriel@gmail.com","Birthday":"01/04/1998","FavoriteMovies":[]}
-{"_id":{"$oid":"6321fd3f6be98e81ef3ef86f"},"Username":"Giorgia Pellegrini","Password":"3920","Email":"giorgia@gmail.com","Birthday":"04/11/1993","FavoriteMovies":[]}
-{"_id":{"$oid":"6321fd4f6be98e81ef3ef870"},"Username":"Paolo Franca","Password":"2019","Email":"paolo@gmail.com","Birthday":"12/04/1893","FavoriteMovies":[]}
-{"_id":{"$oid":"6321fda96be98e81ef3ef871"},"Username":"Carla Palco","Password":"3949","Email":"carla@gmail.com","Birthday":"21/03/1999","FavoriteMovies":[]}
-{"_id":{"$oid":"6321fe476be98e81ef3ef872"},"Username":"Gino Paladino","Password":"2013","Email":"gino@gmail.com","Birthday":"15/01/1992","FavoriteMovies":[{"$oid":"6321f4b46be98e81ef3ef86b"}]}
-{"_id":{"$oid":"633dbf7801e341600e483657"},"Username":"testuser1083","Password":"testpassword300","Email":"testuser@gmail.com","Birthday":{"$date":"1998-09-09T23:00:00Z"},"favoriteMovies":[],"__v":0}
-{"_id":{"$oid":"634d976433d60f0879b15271"},"Username":"newplayer29","Password":"birra","Email":"new_player29@gmail.com","Birthday":{"$date":"1994-02-12T00:00:00Z"},"favoriteMovies":[],"__v":0}
