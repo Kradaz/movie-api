@@ -20,22 +20,9 @@ mongoose.connect(process.env.CONNECTION_URI, {
 
 let auth = require('./auth')(app);
 const cors = require('cors');
+app.use(cors());
 const passport = require('passport');
 require('./passport');
-
-// Cors
-let allowedOrigins = ['http://localhost:8080','http://localhost:1234'];
-
-app.use(cors({
- origin: (origin, callback) => {
-   if(!origin) return callback(null, true);
-   if(allowedOrigins.indexOf(origin) === -1){ // If a specific origin isn’t found on the list of allowed origins
-     let message = 'The CORS policy for this application doesn’t allow access from origin ' + origin;
-     return callback(new Error(message ), false);
-   }
-   return callback(null, true);
- }
-}));
 
 // CREATE USER
 
@@ -98,7 +85,7 @@ app.get('/documentation', (req, res) => {
 
 // return JSON object when at /movies / Get all movies
 
-app.get('/movies',passport.authenticate('jwt', { session: false }),(req, res) => {
+app.get('/movies',(req, res) => {
   Movies.find()
   .then((movies) => {
     res.status(201).json(movies);
